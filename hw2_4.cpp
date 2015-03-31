@@ -4,8 +4,9 @@
 #include <fstream>
 #include <sstream>
 #include <list>
+#include <time.h>
 #define inputSize 149639105
-#define tableSize 100
+#define tableSize 10000
 
 using namespace std;
 typedef vector<string> Data;
@@ -34,7 +35,8 @@ void clicked(int u);
 
 int main(int argc,char* argv[])
 {
-	
+	clock_t t;
+	t = clock();
 	ifstream in1(argv[1],ios::in);
 	if( !in1 )
 	{
@@ -43,7 +45,7 @@ int main(int argc,char* argv[])
 	}
 	
 
-	/*
+	
 	ofstream out1(argv[2],ios::out);
 	
 	if(!out1)
@@ -53,14 +55,14 @@ int main(int argc,char* argv[])
 	}
 	
 	out1 << "Click"<<'\t'<<"impression"<<'\t'<<"URL"<<'\t'<<'\t'<<"AdID"<<'\t'<<"AdvertiserID"<<'\t'<<"depth"<<'\t'<<"position"<<'\t'<<"QID"<<'\t'<<"KID"<<'\t'<<"TID"<<'\t'<<"DID"<<'\t'<<"UID"<<endl;
-	*/
+	
 	int count = 0;
 	while(in1 >>click>>impression>>URL>>AdID>>AdvertiserID>>depth>>position>>QID>>KID>>TID>>DID>>UID)
 	{
 		stringstream ss;
 		Data data1;
 		
-		//out1 << click[count]<<'\t'<<impression[count]<<'\t'<<URL[count]<<'\t'<<AdID[count]<<'\t'<<AdvertiserID[count]<<'\t'<<depth[count]<<'\t'<<position[count]<<'\t'<<QID[count]<<'\t'<<KID[count]<<'\t'<<TID[count]<<'\t'<<DID[count]<<'\t'<<UID[count]<<endl;
+		out1 << click[count]<<'\t'<<impression[count]<<'\t'<<URL[count]<<'\t'<<AdID[count]<<'\t'<<AdvertiserID[count]<<'\t'<<depth[count]<<'\t'<<position[count]<<'\t'<<QID[count]<<'\t'<<KID[count]<<'\t'<<TID[count]<<'\t'<<DID[count]<<'\t'<<UID[count]<<endl;
 		//out1 << click[count]<<'\t'<<impression[count]<<endl;
 		
 		data1.push_back(click);
@@ -179,7 +181,8 @@ int main(int argc,char* argv[])
 	
 	get(490234,21375650,4688625,1,2);
 	clicked(490234);
-	
+	t = t-clock();
+	printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
 	
 }
 
