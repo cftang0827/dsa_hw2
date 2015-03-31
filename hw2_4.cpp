@@ -4,7 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <list>
-#define inputSize 20000
+#define inputSize 149639105
 #define tableSize 100
 
 using namespace std;
