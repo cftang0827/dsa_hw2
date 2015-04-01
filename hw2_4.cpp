@@ -5,7 +5,7 @@
 #include <sstream>
 #include <list>
 #include <time.h>
-#define inputSize 149639105
+#define inputSize 14963910
 #define tableSize 10000
 
 using namespace std;
@@ -149,7 +149,7 @@ int main(int argc,char* argv[])
 		//datalist.push_back(data);
 		if(count == inputSize)
 			break;
-		
+	 	return 0;
 	}
 	
 	//vector<DataList>::iterator iter = list[4].begin();
