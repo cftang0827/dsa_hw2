@@ -25,7 +25,20 @@ string KID ;
 string TID;
 string DID ;
 string UID;
-string a ;
+
+char click1[30];
+char impression1[30];
+char URL1[30];
+char AdID1[30];
+char AdvertiserID1[30];
+char depth1[30];
+char position1[30];
+char QID1[30];
+char KID1[30] ;
+char TID1[30];
+char DID1[30] ;
+char UID1[30];
+//string a ;
 	
 DataList *list1 = new  DataList[tableSize];	
 
@@ -73,7 +86,7 @@ int main(int argc,char* argv[])
 	//while(in1 >>click>>impression>>URL>>AdID>>AdvertiserID>>depth>>position>>QID>>KID>>TID>>DID>>UID)
     while(!feof(fin))
 	{
-        fscanf(fin,"%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\n]\n",click,impression,URL,AdID,AdvertiserID,depth,position,QID,KID,TID,DID,UID);
+        fscanf(fin,"%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\n]\n",click1,impression1,URL1,AdID1,AdvertiserID1,depth1,position1,QID1,KID1,TID1,DID1,UID1);
 		stringstream ss;
 		Data data1;
 		
@@ -200,6 +213,7 @@ int main(int argc,char* argv[])
 	printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
 
 	delete []list1;
+	fclose(fin);
 //	return 0;
 }
 
