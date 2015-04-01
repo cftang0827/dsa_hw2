@@ -5,7 +5,7 @@
 #include <sstream>
 #include <list>
 #include <time.h>
-#define inputSize 14963910
+#define inputSize 2000000
 #define tableSize 10000
 
 using namespace std;
@@ -26,12 +26,12 @@ string DID ;
 string UID;
 string a ;
 	
-DataList list1[tableSize];	
+DataList *list1 = new  DataList[tableSize];	
 
 //function declaration
 void get(int ,int, int, int, int);
 void clicked(int u);
-void clicked(int u);
+//void clicked(int u);
 
 int main(int argc,char* argv[])
 {
@@ -46,15 +46,15 @@ int main(int argc,char* argv[])
 	
 
 	
-	ofstream out1(argv[2],ios::out);
+//	ofstream out1(argv[2],ios::out);
 	
-	if(!out1)
-	{
-		cerr<<"Output File error"<<endl;
+//	if(!out1)
+//	{
+//		cerr<<"Output File error"<<endl;
 		//exit(1);
-	}
+//	}
 	
-	out1 << "Click"<<'\t'<<"impression"<<'\t'<<"URL"<<'\t'<<'\t'<<"AdID"<<'\t'<<"AdvertiserID"<<'\t'<<"depth"<<'\t'<<"position"<<'\t'<<"QID"<<'\t'<<"KID"<<'\t'<<"TID"<<'\t'<<"DID"<<'\t'<<"UID"<<endl;
+//	out1 << "Click"<<'\t'<<"impression"<<'\t'<<"URL"<<'\t'<<'\t'<<"AdID"<<'\t'<<"AdvertiserID"<<'\t'<<"depth"<<'\t'<<"position"<<'\t'<<"QID"<<'\t'<<"KID"<<'\t'<<"TID"<<'\t'<<"DID"<<'\t'<<"UID"<<endl;
 	
 	int count = 0;
 	while(in1 >>click>>impression>>URL>>AdID>>AdvertiserID>>depth>>position>>QID>>KID>>TID>>DID>>UID)
@@ -62,7 +62,7 @@ int main(int argc,char* argv[])
 		stringstream ss;
 		Data data1;
 		
-		out1 << click[count]<<'\t'<<impression[count]<<'\t'<<URL[count]<<'\t'<<AdID[count]<<'\t'<<AdvertiserID[count]<<'\t'<<depth[count]<<'\t'<<position[count]<<'\t'<<QID[count]<<'\t'<<KID[count]<<'\t'<<TID[count]<<'\t'<<DID[count]<<'\t'<<UID[count]<<endl;
+//		out1 << click[count]<<'\t'<<impression[count]<<'\t'<<URL[count]<<'\t'<<AdID[count]<<'\t'<<AdvertiserID[count]<<'\t'<<depth[count]<<'\t'<<position[count]<<'\t'<<QID[count]<<'\t'<<KID[count]<<'\t'<<TID[count]<<'\t'<<DID[count]<<'\t'<<UID[count]<<endl;
 		//out1 << click[count]<<'\t'<<impression[count]<<endl;
 		
 		data1.push_back(click);
@@ -149,7 +149,7 @@ int main(int argc,char* argv[])
 		//datalist.push_back(data);
 		if(count == inputSize)
 			break;
-	 	return 0;
+	 	
 	}
 	
 	//vector<DataList>::iterator iter = list[4].begin();
@@ -183,7 +183,9 @@ int main(int argc,char* argv[])
 	clicked(490234);
 	t = t-clock();
 	printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
-	
+
+	delete []list1;
+//	return 0;
 }
 
 int count1=0;
