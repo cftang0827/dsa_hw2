@@ -4,8 +4,9 @@
 #include <fstream>
 #include <sstream>
 #include <list>
+#include <stdio.h>
 #include <time.h>
-#define inputSize 2000000
+#define inputSize 100000
 #define tableSize 10000
 
 using namespace std;
@@ -35,15 +36,27 @@ void clicked(int u);
 
 int main(int argc,char* argv[])
 {
+    unsigned char str[20];
 	clock_t t;
 	t = clock();
-	ifstream in1(argv[1],ios::in);
+
+
+    FILE* fin;
+    fin = fopen(argv[1],"rt");
+    if (!infile) {
+     printf("Couldn't open %s for reading\n");
+    }
+
+
+
+/*
+    ifstream in1(argv[1],ios::in);
 	if( !in1 )
 	{
 		cerr<<"Input File fail"<<endl;
 		//exit(1);
 	}
-	
+*/	
 
 	
 //	ofstream out1(argv[2],ios::out);
@@ -57,8 +70,10 @@ int main(int argc,char* argv[])
 //	out1 << "Click"<<'\t'<<"impression"<<'\t'<<"URL"<<'\t'<<'\t'<<"AdID"<<'\t'<<"AdvertiserID"<<'\t'<<"depth"<<'\t'<<"position"<<'\t'<<"QID"<<'\t'<<"KID"<<'\t'<<"TID"<<'\t'<<"DID"<<'\t'<<"UID"<<endl;
 	
 	int count = 0;
-	while(in1 >>click>>impression>>URL>>AdID>>AdvertiserID>>depth>>position>>QID>>KID>>TID>>DID>>UID)
+	//while(in1 >>click>>impression>>URL>>AdID>>AdvertiserID>>depth>>position>>QID>>KID>>TID>>DID>>UID)
+    while(!feof(fin))
 	{
+        fscanf(fin,"%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\n]\n",click,impression,URL,AdID,AdvertiserID,depth,position,QID,KID,TID,DID,UID);
 		stringstream ss;
 		Data data1;
 		
