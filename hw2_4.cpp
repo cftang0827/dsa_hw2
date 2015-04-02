@@ -4,9 +4,8 @@
 #include <fstream>
 #include <sstream>
 #include <list>
-#include <stdio.h>
 #include <time.h>
-#define inputSize 100000
+#define inputSize 2000000
 #define tableSize 10000
 
 using namespace std;
@@ -25,20 +24,7 @@ string KID ;
 string TID;
 string DID ;
 string UID;
-
-char click1[30];
-char impression1[30];
-char URL1[30];
-char AdID1[30];
-char AdvertiserID1[30];
-char depth1[30];
-char position1[30];
-char QID1[30];
-char KID1[30] ;
-char TID1[30];
-char DID1[30] ;
-char UID1[30];
-//string a ;
+string a ;
 	
 DataList *list1 = new  DataList[tableSize];	
 
@@ -49,27 +35,15 @@ void clicked(int u);
 
 int main(int argc,char* argv[])
 {
-    unsigned char str[20];
 	clock_t t;
 	t = clock();
-
-
-    FILE* fin;
-    fin = fopen(argv[1],"rt");
-    if (!infile) {
-     printf("Couldn't open %s for reading\n");
-    }
-
-
-
-/*
-    ifstream in1(argv[1],ios::in);
+	ifstream in1(argv[1],ios::in);
 	if( !in1 )
 	{
 		cerr<<"Input File fail"<<endl;
 		//exit(1);
 	}
-*/	
+	
 
 	
 //	ofstream out1(argv[2],ios::out);
@@ -83,10 +57,8 @@ int main(int argc,char* argv[])
 //	out1 << "Click"<<'\t'<<"impression"<<'\t'<<"URL"<<'\t'<<'\t'<<"AdID"<<'\t'<<"AdvertiserID"<<'\t'<<"depth"<<'\t'<<"position"<<'\t'<<"QID"<<'\t'<<"KID"<<'\t'<<"TID"<<'\t'<<"DID"<<'\t'<<"UID"<<endl;
 	
 	int count = 0;
-	//while(in1 >>click>>impression>>URL>>AdID>>AdvertiserID>>depth>>position>>QID>>KID>>TID>>DID>>UID)
-    while(!feof(fin))
+	while(in1 >>click>>impression>>URL>>AdID>>AdvertiserID>>depth>>position>>QID>>KID>>TID>>DID>>UID)
 	{
-        fscanf(fin,"%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\n]\n",click1,impression1,URL1,AdID1,AdvertiserID1,depth1,position1,QID1,KID1,TID1,DID1,UID1);
 		stringstream ss;
 		Data data1;
 		
@@ -213,7 +185,6 @@ int main(int argc,char* argv[])
 	printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
 
 	delete []list1;
-	fclose(fin);
 //	return 0;
 }
 
