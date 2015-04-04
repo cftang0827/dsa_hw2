@@ -33,6 +33,7 @@ DataList *list1 = new  DataList[tableSize];
 void get(int ,int, int, int, int);
 void clicked(int u);
 //void clicked(int u);
+bool replicate(DataList , int);
 
 bool myfunc(Data ,Data );
 int main(int argc,char* argv[])
@@ -182,7 +183,7 @@ int main(int argc,char* argv[])
     //system("PAUSE");
 
     get(490234,21560664,2255103,2,2);
-    clicked(490234);
+    clicked(186522);
     t = t-clock();
     printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
 
@@ -284,22 +285,17 @@ void clicked(int u)
         rr<<list1[index2][i][0];
         rr>>pter;
 
-
-
-        for(int k=0;k<=i;k++)
+        if(list1[index2][i][11] == us && pter>=1 &&replicate(list1[index2],i ))
         {
-            if(list1[index2][i][11] == us && pter>=1 &&list1[index2][k][3] != list1[index2][i][3] )
-            {
-                //cout<<"clicked("<<u<<")=";
-                //cout<<"("<<list1[index2][i][3]<<", "<<list1[index2][i][7]<<")"<<endl;
+            //cout<<"clicked("<<u<<")=";
+            //cout<<"("<<list1[index2][i][3]<<", "<<list1[index2][i][7]<<")"<<endl;
 
 
-                Data temp;
-                temp.push_back(list1[index2][i][3]);
-                temp.push_back(list1[index2][i][7]);
-                temp_array.push_back(temp);
+            Data temp;
+            temp.push_back(list1[index2][i][3]);
+            temp.push_back(list1[index2][i][7]);
+            temp_array.push_back(temp);
 
-            }
         }
 
     }
@@ -322,3 +318,17 @@ bool myfunc(Data data1,Data data2)
     return(data1[0] > data2[0]);
 }
 
+bool replicate(DataList a, int iter)
+{
+    bool temp = true;
+    if(iter != 0)
+    {
+        for(int g=0;g<iter;g++)
+        {
+            if(a[g][3] == a[iter][3])
+                temp = false;
+            break;
+        }
+    }
+    return temp;
+}
