@@ -183,7 +183,7 @@ int main(int argc,char* argv[])
     //system("PAUSE");
 
     get(490234,21560664,2255103,2,2);
-    clicked(186522);
+    clicked(490234);
     t = t-clock();
     printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
 
@@ -315,7 +315,7 @@ void clicked(int u)
 
 bool myfunc(Data data1,Data data2)
 {
-    return(data1[0] > data2[0]);
+    return(data1[0] < data2[0]);
 }
 
 bool replicate(DataList a, int iter)
@@ -332,3 +332,6 @@ bool replicate(DataList a, int iter)
     }
     return temp;
 }
+
+
+
