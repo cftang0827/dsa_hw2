@@ -6,8 +6,10 @@
 #include <list>
 #include <time.h>
 #include <algorithm>
+#include <map>
 #define inputSize 2000000
-#define tableSize 10000
+#define tableSize 100000
+
 
 using namespace std;
 typedef vector<string> Data;
@@ -34,11 +36,15 @@ void get(int ,int, int, int, int);
 void clicked(int u);
 //void clicked(int u);
 bool replicate(DataList , int);
+void impressed(int, int);
 
 bool myfunc(Data ,Data );
+bool myfunc1(DataList,DataList);
 int main(int argc,char* argv[])
 {
     clock_t t;
+	clock_t t1;
+	t1 = clock();
     t = clock();
     ifstream in1(argv[1],ios::in);
     if( !in1 )
@@ -181,9 +187,13 @@ int main(int argc,char* argv[])
        }*/
 
     //system("PAUSE");
+	t1 = t1-clock();
+	printf ("It took me %d clicks in making data sheet(%f seconds).\n",t1,((float)t1)/CLOCKS_PER_SEC);
 
-    get(490234,21560664,2255103,2,2);
-    clicked(490234);
+   get(490234,21560664,2255103,2,2);
+    //clicked(490234);
+	//impressed(6231944,490234);
+	
     t = t-clock();
     printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
 
@@ -309,13 +319,13 @@ void clicked(int u)
         cout<<endl;
     }
 
-
+	cout<<endl;
 }
 
 
 bool myfunc(Data data1,Data data2)
 {
-    return(data1[0] < data2[0]);
+    return(data1[0] <= data2[0]);
 }
 
 bool replicate(DataList a, int iter)
@@ -334,4 +344,85 @@ bool replicate(DataList a, int iter)
 }
 
 
+void impressed(int u1,int u2)
+{
+	
+	int index3 = u1%tableSize;
+	int index4 = u2%tableSize;
+	stringstream ss1;
+	stringstream ss2;
+	string us1;
+	string us2;
+	ss1<<u1;
+	ss2<<u2;
+	ss1>>us1;
+	ss2>>us2;
+	DataList temp1;
+	DataList temp2;
+	map<string,DataList> container;
+	//map<string,DataList> container2;
+	
+	for(int i=0;i<list1[index3].size();i++)
+	{
+		if(list1[index3][i][11] == us1 )//&& list1[index3][i][0]!="0")
+		{
+			temp1.push_back(list1[index3][i]);
+		}
+		cout<<temp1[i][3]<<" ";
+		//DataList t1;
+		if(temp1[i][1] != "0")
+		container[temp1[i][3]].push_back(temp1[i]);
+	}
+	cout<<endl;
+	for(int j=0;j<list1[index4].size();j++)
+	{
+		if(list1[index4][j][11] == us2 )//&&list1[index4][j][0]!="0")
+		{
+			temp2.push_back(list1[index4][j]);
+		}
+		cout<<temp2[j][3]<<" ";
+		if(temp2[j][1] != "0")
+		container[temp2[j][3]].push_back(temp2[j]);
+	}
+	cout<<endl;
+	
+	//cout<<container[temp2[0][3]][0][3]<<endl;
+	vector<DataList> con;
+	for(map<string,DataList>::iterator it=container.begin();it!=container.end(); ++it)
+	{
+		
+		cout<<it->first<<": "<<endl;
+		for(int u=0;u<(it->second).size();u++)
+		{
+			cout<<(it->second)[u][2]<<" "<<(it->second)[u][4]<<" "<<(it->second)[u][8]<<" "<<(it->second)[u][9]<<" "<<(it->second)[u][10]<<" "<<(it->second)[u][11]<<" ";
+			cout<<endl;
+			if((it->second).size()!=1 )
+			{
+				if((it->second)[u][11] != (it->second)[u+1][11])
+				{
+					con.push_back(it->second);
+					break;
+				}
+			}
+		}
+	}
+	cout<<endl;
+	sort(con.begin(),con.end(),myfunc1);
+	for(int h=0;h<con.size();h++)
+	{
+		for(int k=0;k<con[h].size();k++)
+		{
+			cout<<con[h][k][3]<<" "<<con[h][k][2];
+			cout<<endl;
+		}
+		cout<<endl;
+	}
 
+
+
+}
+
+bool myfunc1(DataList a,DataList b)
+{
+	return (a[0][3] > b[0][3]);
+}
