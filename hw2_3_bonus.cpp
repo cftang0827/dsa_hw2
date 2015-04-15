@@ -7,7 +7,8 @@ void rearrange(int* ,int);
 
 int main()
 {
-	int a[9]={243,6345,244,321,6456,2347,14324,0,0};
+	//int a[2]={3};
+	int a[20]={7,2,6,4,8,5,7,1,667,24,234,44,13,42,55,98,24315,23,23,23};
 	cout<<"before rearrange:"<<endl;
 	for(int i=0;i<sizeof(a)/sizeof(a[0]);i++)
 	{
@@ -25,26 +26,37 @@ void rearrange(int a[],int size)
 	
 	for(int i=0;i<size;i++)
 	{
-		if(a[i]%2 == 0 && !(begin == end))
+		bool pot = false;
+		if(a[i]%2 == 0 )
 		{
 			temp[begin] = a[i];
 			begin++;
 			
-		}else if(a[i]%2 != 0 && !(begin == end))
+		}else if(a[i]%2 != 0 )
 		{
 			temp[end] = a[i];
 			end--;
 			
-		}else if (begin == end)
+		}else if (begin == end &&pot == false)
+		{
+			pot = true;
+		}else if(pot == true)
 		{
 			break;
 		}
 		
 	}
+	
 	cout<<"after rearrange:"<<endl;
 	for(int i=0;i<size;i++)
 	{
 		cout<<temp[i]<<" ";
 	}
 	cout<<endl;
+	
+	
+	
+	
+	
+	
 }
